@@ -7,19 +7,6 @@
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing && (components != null))
-			{
-				components.Dispose();
-			}
-			base.Dispose(disposing);
-		}
-
 		#region Windows Form Designer generated code
 
 		/// <summary>
@@ -28,6 +15,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DummyForm));
 			this.SuspendLayout();
 			// 
 			// DummyForm
@@ -36,11 +24,14 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(0, 0);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "DummyForm";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+			this.Text = "System Sound Player";
 			this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DummyForm_FormClosing);
 			this.Shown += new System.EventHandler(this.DummyForm_Shown);
 			this.ResumeLayout(false);
 

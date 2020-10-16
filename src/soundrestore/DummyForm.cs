@@ -71,21 +71,23 @@ namespace soundrestore
 		{
 			InitializeComponent();
 
-			SystemEvents.SessionEnded += new SessionEndedEventHandler(SystemEvents_SessionEnded);
 			SystemEvents.SessionSwitch += new SessionSwitchEventHandler(SystemEvents_SessionSwitch);
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				SystemEvents.SessionSwitch -= SystemEvents_SessionSwitch;
+				components.Dispose();
+			}
+			base.Dispose(disposing);
 		}
 
 		private void DummyForm_Shown(object sender, EventArgs e)
 		{
 			Hide();
 			Play(Sound.Logon);
-		}
-
-		private void SystemEvents_SessionEnded(object sender, SessionEndedEventArgs e)
-		{
-			ShutdownBlockReasonCreate(this.Handle, "Playing shutdown sound");
-			Play(Sound.Logoff);
-			ShutdownBlockReasonDestroy(this.Handle);
 		}
 
 		private void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
@@ -137,6 +139,16 @@ namespace soundrestore
 				EventLog.WriteEntry("Application", string.Format(CultureInfo.InvariantCulture,
 					"Cannot play system sound: {0}", e), EventLogEntryType.Error);
 			}
+		}
+
+		private void DummyForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			if (e.CloseReason != CloseReason.WindowsShutDown)
+				return;
+
+			ShutdownBlockReasonCreate(this.Handle, "Playing shutdown sound");
+			Play(Sound.Logoff);
+			ShutdownBlockReasonDestroy(this.Handle);
 		}
 	}
 }
