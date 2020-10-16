@@ -8,10 +8,10 @@ What was removed in Windows 10 was the ability for the operating system to actua
 ## How to Use
 1. Put `soundrestore.exe` in a central location, like your Windows directory
 1. Put a shortcut to `soundrestore.exe` in your Startup folder
-1. Launch the shortcut manually once (or reboot)
 1. Use the `RestoreSoundEvents.reg` file to unhide the program events for "Windows Logon", "Windows Logoff" and "Windows Unlock" (you need to do this once for every user if you have multiple user accounts)
 1. Optional: use the `DisableStartupDelay.reg` to make the sound play as early as possible after logging on (you need to do this once for every user if you have multiple user accounts)
 1. Configure the sounds that you want to play using the Control Panel
+1. Launch the shortcut manually once (or reboot)
 
 The All Users Startup folder is located at `C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup`, and the current user's Startup folder is located at `C:\Users\[User Name]\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`.
 
