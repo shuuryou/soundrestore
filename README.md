@@ -1,7 +1,7 @@
 # System Sound Player
 **A small C# program that will restore the logon, logoff, and unlock program events in Windows 10.**
 
-In Windows 10, Microsoft removed the ability for the operating system to play a sound when logging on, logging off, or unlocking the computer. This program will help you get these program events back, because like everything the Windows team do, the removal of these program events was only half-assed.
+In Windows 10, Microsoft removed the ability for the operating system to play a sound when logging on, logging off, or unlocking the computer. This program will help you get these program events back, because like everything the Shell Team at Microsoft does, the removal of these program events was only half-assed.
 
 What was removed in Windows 10 was the ability for the operating system to actually play back a configured sound file. This was supposedly because they had optimized startup and shutdown so much that they couldn't get the sounds to play reliably anymore. However, the ability to set a sound file via the control panel still exists and has just been hidden.
 
