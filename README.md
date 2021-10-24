@@ -1,14 +1,14 @@
 # System Sound Player
-**A small C# program that will restore the logon, logoff, and unlock program events in Windows 10.**
+**A small C# program that will restore the logon, logoff, system start, and system exit program events in Windows 10.**
 
-In Windows 10, Microsoft removed the ability for the operating system to play a sound when logging on, logging off, or unlocking the computer. This program will help you get these program events back, because like everything the Shell Team at Microsoft does, the removal of these program events was only half-assed.
+In Windows 10, Microsoft removed the ability for the operating system to play a sound when locking or unlocking a session, as well as when logging on or logging off. This program will help you get these features back, because like everything the Shell Team at Microsoft does, the removal was only half-assed.
 
 What was removed in Windows 10 was the ability for the operating system to actually play back a configured sound file. This was supposedly because they had optimized startup and shutdown so much that they couldn't get the sounds to play reliably anymore. However, the ability to set a sound file via the control panel still exists and has just been hidden.
 
 ## How to Use
 1. Put `soundrestore.exe` in a central location, like your Windows directory
 1. Put a shortcut to `soundrestore.exe` in your Startup folder
-1. Use the `RestoreSoundEvents.reg` file to unhide the program events for "Windows Logon", "Windows Logoff" and "Windows Unlock" (you need to do this once for every user if you have multiple user accounts)
+1. Use the `RestoreSoundEvents.reg` file to unhide the program events for "Windows Logon", "Windows Logoff", "Exit Windows" and "Start Windows" (you need to do this once for every user if you have multiple user accounts)
 1. Optional: use the `DisableStartupDelay.reg` to make the sound play as early as possible after logging on (you need to do this once for every user if you have multiple user accounts)
 1. Configure the sounds that you want to play using the Control Panel
 1. Launch the shortcut manually once (or reboot)
@@ -16,6 +16,16 @@ What was removed in Windows 10 was the ability for the operating system to actua
 The All Users Startup folder is located at `C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup`, and the current user's Startup folder is located at `C:\Users\[User Name]\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`.
 
 You can use the `HideSoundEvents.reg` file if you want to hide the abovementioned program events again. You can use the `RestoreStartupDelay.reg` file to restore the default Windows 10 startup delay.
+
+## When Program Events are Played
+|Event|When Played|
+|---|---|
+|Windows Logon|Session is unlocked|
+|Windows Logoff|Session is locked (Win+L) or "Switch user" command|
+|Exit Windows|Shut down, restart, sign out (anything that ends your session)|
+|Start Windows|When `soundrestore.exe` is launched, so if you put it in the Startup folder it will play when starting your session|
+
+It is absolutely pathetic that you need to use a third-party program like this one to do such a simple thing but here we are...
 
 # Why?
 ## Windows 10 Has No Soul
