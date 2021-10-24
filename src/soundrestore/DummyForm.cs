@@ -46,7 +46,8 @@ namespace soundrestore
 			None = 0,
 			Logon = 1,
 			Logoff = 2,
-			Unlock = 3
+			Startup = 3,
+			Shutdown = 4
 		}
 
 		protected override bool ShowWithoutActivation
@@ -87,13 +88,21 @@ namespace soundrestore
 		private void DummyForm_Shown(object sender, EventArgs e)
 		{
 			Hide();
-			Play(Sound.Logon);
+			Play(Sound.Startup);
 		}
 
 		private void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
 		{
 			if (e.Reason == SessionSwitchReason.SessionUnlock)
-				Play(Sound.Unlock);
+				Play(Sound.Logon);
+			else if (e.Reason == SessionSwitchReason.SessionLock)
+				Play(Sound.Logoff);
+			// Weird because user expects shutdown sound when session ends
+			//else if (e.Reason == SessionSwitchReason.SessionLogoff)
+			//	Play(Sound.Logoff); 
+			// Cannot work since this program is not running when it would fire
+			//else if (e.Reason == SessionSwitchReason.SessionLogon)
+			//	Play(Sound.Logon);
 		}
 
 		private void Play(Sound what)
@@ -109,8 +118,11 @@ namespace soundrestore
 				case Sound.Logoff:
 					subkey = "WindowsLogoff";
 					break;
-				case Sound.Unlock:
-					subkey = "WindowsUnlock";
+				case Sound.Startup:
+					subkey = "SystemStart";
+					break;
+				case Sound.Shutdown:
+					subkey = "SystemExit";
 					break;
 			}
 
@@ -147,7 +159,7 @@ namespace soundrestore
 				return;
 
 			ShutdownBlockReasonCreate(this.Handle, "Playing shutdown sound");
-			Play(Sound.Logoff);
+			Play(Sound.Shutdown);
 			ShutdownBlockReasonDestroy(this.Handle);
 		}
 	}
