@@ -96,7 +96,7 @@ extern "C" void __cdecl Entry() {
 
     ShowWindow(hWnd, SW_HIDE);
     WTSRegisterSessionNotification(hWnd, NOTIFY_FOR_THIS_SESSION);
-    PlaySoundW(L"SystemStart", NULL, SND_ALIAS | SND_ASYNC);
+    PlaySoundW(L"SystemStart", NULL, SND_ALIAS | SND_SYSTEM | SND_ASYNC);
 
     MSG msg;
     while (GetMessageW(&msg, NULL, 0, 0)) {
