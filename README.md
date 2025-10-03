@@ -23,6 +23,6 @@ What was actually removed was the ability for the operating system to play a con
 | Windows Logon | Session is unlocked (e.g., after entering password) |
 | Windows Logoff | Session is locked (<kbd>Windows</kbd> + <kbd>L</kbd>) or "Switch user" is selected |
 | Exit Windows | System shuts down, restarts, or user signs out |
-| Start Windows | At session startup, triggered by the Task Scheduler task |
+| Start Windows | When the program starts |
 
 It is absolutely pathetic that you need to use a third-party program like this one to do such a simple thing, but alas, such is the state of modern Windows.
